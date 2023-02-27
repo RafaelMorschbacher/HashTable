@@ -13,6 +13,7 @@ def get_names(file):
 names = get_names(file_names)
 test_array = ['Chole Kaspar', 'Zedekiah Brody', 'Jesslyn Tallulah', 'Leilany Zari', 'Ellena Zyion']
 
+
 # LISTA ENCADEADA - inicio
 # A single node of a singly linked list
 class Node:
@@ -46,6 +47,8 @@ class LinkedList:
             print(current.data)
             current = current.next
         print(']')
+
+
 # LISTA ENCADEADA - final
 
 def hashPolinomial(input, M):
@@ -57,19 +60,18 @@ def hashPolinomial(input, M):
     key = polinomio % M
     return key
 
-def insertName(name, hash_table, M, hashFunction):
 
+def insertName(name, hash_table, M, hashFunction):
     key = hashFunction(name, M)
     linked_list = hash_table[key]
     linked_list.insert(name)
-
 
 
 def createHashTable(M, arr, hashFunction):
     hash_table = []
     for i in range(0, M):
         hash_table.append(LinkedList())
-    #hash_table = [LinkedList()] * M
+    # hash_table = [LinkedList()] * M
 
     for name in arr:
         insertName(name, hash_table, M, hashFunction)
@@ -78,20 +80,26 @@ def createHashTable(M, arr, hashFunction):
 
 
 def searchName(name, hash_table, M, hashFunction):
+    key = hashFunction(name, M)
+    acessos = 1
 
-    key = hashFunction(name, M, 0)
+    if not hash_table[key]:
+        return -1 #not found
 
-    if hash_table[key] is None:
-        return 'NÃO ENCONTRADO'
+    current_node = hash_table[key].head
 
-    i = 0
-    while hash_table[key] != name and hash_table[key] != None:
-        i = i + 1
-        key = hashFunction(name, M, i)
-    return hash_table[key]
+    while current_node.data != name and current_node.next is not None:
+        current_node = current_node.next
+        acessos = acessos + 1
+
+    if current_node.data == name:
+        return acessos
+    else:
+        return -1 #not found
 
 
-table = createHashTable(200, names, hashPolinomial)
+table = createHashTable(1000, names, hashPolinomial)
 for LL in table:
     LL.printLL()
 
+print(searchName("Sigri", table, 1000, hashPolinomial))
