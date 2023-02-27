@@ -11,34 +11,40 @@ def get_names(file):
 
 
 names = get_names(file_names)
+test_array = ['Chole Kaspar', 'Zedekiah Brody', 'Jesslyn Tallulah', 'Leilany Zari', 'Ellena Zyion']
 
-
-def hashPolinomial(input, M, i):
+def hashPolinomial(input, M):
     length = len(input)
     a = 31
     polinomio = 0
     for j in range(0, length):
         polinomio = polinomio + ord(input[j]) * a ** j
-    key = (polinomio + i) % M
+    key = polinomio % M
     return key
+
+def insertName(name, hash_table, M, hashFunction):
+
+    key = hashFunction(name, M)
+
+    bucket = hash_table[key]
+    bucket.append(name)
+
+    print(key)
+    print(bucket)
+
 
 
 def createHashTable(M, arr, hashFunction):
-    hash_table = [None] * M
-
-    i = 0  # collision counter
+    hash_table = [[]] * M
 
     for name in arr:
-        key = hashFunction(name, M, i)
+        insertName(name, hash_table, M, hashFunction)
 
-        while hash_table[key] is not None:
-            i = i + 1
-            key = hashFunction(name, M, i)
-        hash_table[key] = name
     return hash_table
 
 
 def searchName(name, hash_table, M, hashFunction):
+
     key = hashFunction(name, M, 0)
 
     if hash_table[key] is None:
@@ -51,7 +57,11 @@ def searchName(name, hash_table, M, hashFunction):
     return hash_table[key]
 
 
-table = createHashTable(10000, names, hashPolinomial)
-print(table)
-print(searchName("Mikenzie Symone", table, 10000, hashPolinomial))
-print(searchName("Rafael Cunha", table, 10000, hashPolinomial))
+table = createHashTable(10, test_array, hashPolinomial)
+
+# for bucket in table:
+#     print(bucket)
+
+#insertName("Rafael", table, 10000, hashPolinomial)
+
+#print(searchName("Rafael Cunha", table, 10000, hashPolinomial))
