@@ -149,12 +149,14 @@ def table_stats(hash_table, M, consultas, hashFunction, output_file):
 
     searchList(consultas, hash_table, M, hashFunction, output_file)
 
+def experiment(M, database, consultas, hashFunction):
+    table = createHashTable(M, database, hashPolinomial)
+    output_file = open('experimento' + str(M) + '.txt', 'w')
+    table_stats(table, M, consultas, hashFunction, output_file)
 
 # TESTE
 for M in [503, 2503, 5003, 7507]:
-    table = createHashTable(M, names, hashPolinomial)
-    file_output = open('experimento' + str(M) + '.txt', 'w')
-    table_stats(table, M, consultas, hashPolinomial, file_output)
+    experiment(M, names, consultas, hashPolinomial)
 
 
 
