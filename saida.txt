@@ -1,0 +1,58 @@
+PARTE1: ESTATISTICAS DA TABELA HASH:
+NUMERO DE ENTRADAS DA TABELA USADAS: 1987
+NUMERO DE ENTRADAS DA TABELA VAZIAS: 13
+TAXA DE OCUPACAO 99.35%
+MINIMO TAMANHO DE LISTA: 0
+MAXIMO TAMANHO DE LISTA: 14
+
+PARTE2: ESTATISTICAS DA CONSULTAS:
+Adris Briannah HIT 1
+Graesyn Fallou HIT 1
+Aleira Khalani HIT 1
+Sonnie Romney HIT 1
+Kassaya Aveleen HIT 1
+Micaella Zeon HIT 1
+Buster Kaegan HIT 1
+Dyamond Shamshon HIT 1
+Adalys Hasti HIT 1
+Anton Grier HIT 1
+Jesiyah Sadey HIT 2
+Shalayah Morena HIT 1
+Aws Asaun HIT 1
+Darleth Mays HIT 2
+Anh Alann HIT 1
+Daniela Nicky HIT 2
+Kassius Teya HIT 1
+Darel Mubarak HIT 1
+Joao Comba MISS
+Azalaya Andersen HIT 3
+Valeska Drayke HIT 2
+Makyla Azari HIT 2
+Emila Joye HIT 4
+Edwardo Sadye HIT 2
+Daimon Dua HIT 3
+Ruth Macey HIT 2
+Arie Liana HIT 4
+Eduardo Vernier MISS
+Wills Makana HIT 2
+Kyell Avalina HIT 2
+Bodee Garner HIT 5
+Aibhlinn Bransyn HIT 3
+Jacarion Beatris HIT 3
+Symphonee Azalynn HIT 4
+Jalin Dajohn HIT 4
+Julien Hanief HIT 4
+Allen Rella HIT 2
+Muiz Demia HIT 7
+Juan Ipenza MISS
+Charolette Avianna HIT 10
+Italie Rigley HIT 8
+Rowdy Iry HIT 7
+Kycen Damari HIT 6
+Aafiya Saahir HIT 3
+Haniyah Astrid HIT 5
+Kynnleigh Kaely HIT 7
+Zayed Zeo HIT 6
+Marai Farris HIT 5
+Emmeri Raelynn HIT 4
+Eban Nikita HIT 8

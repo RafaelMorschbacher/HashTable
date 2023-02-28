@@ -1,4 +1,5 @@
-file_names = open('nomes_10000.txt')
+file_names = open('nomes_10000.txt', 'r')
+file_consultas = open('consultas.txt', 'r')
 
 
 def get_names(file):
@@ -11,6 +12,7 @@ def get_names(file):
 
 
 names = get_names(file_names)
+consultas = get_names(file_consultas)
 test_array = ['Chole Kaspar', 'Zedekiah Brody', 'Jesslyn Tallulah', 'Leilany Zari', 'Ellena Zyion']
 
 
@@ -43,10 +45,18 @@ class LinkedList:
     def printLL(self):
         current = self.head
         print('[')
-        while (current):
+        while current:
             print(current.data)
             current = current.next
         print(']')
+
+    def size(self):
+        current = self.head
+        node_count = 0
+        while current:
+            node_count = node_count + 1
+            current = current.next
+        return node_count
 
 
 # LISTA ENCADEADA - final
@@ -84,7 +94,7 @@ def searchName(name, hash_table, M, hashFunction):
     acessos = 1
 
     if not hash_table[key]:
-        return -1 #not found
+        return -1  # not found
 
     current_node = hash_table[key].head
 
@@ -95,11 +105,63 @@ def searchName(name, hash_table, M, hashFunction):
     if current_node.data == name:
         return acessos
     else:
-        return -1 #not found
+        return -1  # not found
 
 
-table = createHashTable(1000, names, hashPolinomial)
-for LL in table:
-    LL.printLL()
+def searchList(names, hash_table, M, hashFunction, output_file):
+    for name in names:
+        search = searchName(name, hash_table, M, hashFunction)
+        if search == -1:
+            output_file.write(name + ' MISS\n')
+        else:
+            output_file.write(name + ' HIT ' + str(search) + '\n')
 
-print(searchName("Sigri", table, 1000, hashPolinomial))
+
+def table_stats(hash_table, M, consultas, hashFunction, output_file):
+    used_cells = 0
+    max_list = 0
+    min_list = float('inf')
+    for cell in hash_table:
+
+        cell_length = cell.size()
+
+        if cell.head is not None:
+            used_cells = used_cells + 1
+
+        if cell_length > max_list:
+            max_list = cell_length
+        if cell_length < min_list:
+            min_list = cell_length
+
+
+    empty_cells = M - used_cells
+
+    occupation_ratio = used_cells/M
+
+    output_file.write("PARTE1: ESTATISTICAS DA TABELA HASH:\n")
+    output_file.write('NUMERO DE ENTRADAS DA TABELA USADAS: ' + str(used_cells) + '\n')
+    output_file.write('NUMERO DE ENTRADAS DA TABELA VAZIAS: ' + str(empty_cells) + '\n')
+    output_file.write('TAXA DE OCUPACAO ' + str(round(occupation_ratio*100, 3)) + '%' + '\n')
+    output_file.write('MINIMO TAMANHO DE LISTA: ' + str(min_list) + '\n')
+    output_file.write('MAXIMO TAMANHO DE LISTA: ' + str(max_list) + '\n')
+
+    output_file.write("\nPARTE2: ESTATISTICAS DA CONSULTAS:\n")
+
+    searchList(consultas, hash_table, M, hashFunction, output_file)
+
+
+# TESTE
+for M in [503, 2503, 5003, 7507]:
+    table = createHashTable(M, names, hashPolinomial)
+    file_output = open('experimento' + str(M) + '.txt', 'w')
+    table_stats(table, M, consultas, hashPolinomial, file_output)
+
+
+
+#table = createHashTable(2000, names, hashPolinomial)
+# for LL in table:
+#     LL.printLL()
+
+#searchList(consultas, table, 1000, hashPolinomial)
+
+#table_stats(table, 2000, consultas, hashPolinomial, file_output)
