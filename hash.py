@@ -13,11 +13,10 @@ def get_names(file):
 
 names = get_names(file_names)
 consultas = get_names(file_consultas)
-test_array = ['Chole Kaspar', 'Zedekiah Brody', 'Jesslyn Tallulah', 'Leilany Zari', 'Ellena Zyion']
+
 
 
 # LISTA ENCADEADA - inicio
-# A single node of a singly linked list
 class Node:
     # constructor
     def __init__(self, data=None, next=None):
@@ -25,7 +24,6 @@ class Node:
         self.next = next
 
 
-# A Linked List class with a single head node
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -41,7 +39,6 @@ class LinkedList:
         else:
             self.head = newNode
 
-    # print method for the linked list
     def printLL(self):
         current = self.head
         print('[')
@@ -60,6 +57,7 @@ class LinkedList:
 
 
 # LISTA ENCADEADA - final
+
 
 def hashPolinomial(input, M):
     length = len(input)
@@ -160,10 +158,3 @@ for M in [503, 2503, 5003, 7507]:
 
 
 
-#table = createHashTable(2000, names, hashPolinomial)
-# for LL in table:
-#     LL.printLL()
-
-#searchList(consultas, table, 1000, hashPolinomial)
-
-#table_stats(table, 2000, consultas, hashPolinomial, file_output)
